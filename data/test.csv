@@ -1,0 +1,71 @@
+question,type,answer
+What is 56 plus 44?,arithmetic,100
+Calculate 175 minus 89,arithmetic,86
+What is the product of 14 and 7?,arithmetic,98
+Divide 225 by 15,arithmetic,15
+What is 18 times 6?,arithmetic,108
+Find the sum of 234 and 567,arithmetic,801
+Subtract 145 from 300,arithmetic,155
+Multiply 22 by 11,arithmetic,242
+What is 800 divided by 32?,arithmetic,25
+Add 456 and 789,arithmetic,1245
+Solve for x: x + 12 = 30,algebra,18
+Find x when 7x = 56,algebra,8
+Solve x - 15 = 20,algebra,35
+What is x if 6x = 48?,algebra,8
+Solve for x: x + 18 = 45,algebra,27
+Find x when 9x = 72,algebra,8
+Solve x - 20 = 15,algebra,35
+What is x if 12x = 156?,algebra,13
+Solve for x: x + 22 = 60,algebra,38
+Find x when 14x = 210,algebra,15
+What is the area of a rectangle with length 14 and width 8?,geometry,112
+Find the perimeter of a square with side 13,geometry,52
+What is the area of a circle with radius 3?,geometry,28.274
+Calculate the area of a triangle with base 15 and height 10,geometry,75
+What is the perimeter of a rectangle with length 18 and width 9?,geometry,54
+Find the area of a square with side 11,geometry,121
+What is the volume of a cube with side 3?,geometry,27
+Calculate the area of a circle with radius 16,geometry,804.247
+What is the area of a triangle with base 25 and height 8?,geometry,100
+Find the perimeter of a square with side 24,geometry,96
+Is false AND true equal to false?,logic,True
+What is NOT false?,logic,True
+Is true OR true equal to true?,logic,True
+What is false AND true?,logic,False
+Is NOT (false AND false) equal to true?,logic,True
+What is true OR false?,logic,True
+Is (false OR false) AND false equal to false?,logic,True
+What is NOT (true OR false)?,logic,False
+Is true AND true equal to true?,logic,True
+What is (true AND false) OR false?,logic,False
+Rachel has 85 pencils and buys 47 more. How many pencils does she have in total?,word_problem,132
+A warehouse had 250 crates and shipped 108. How many crates are left?,word_problem,142
+Chris drives 45 miles per day for 8 days. How many miles does he drive in total?,word_problem,360
+A chef makes 36 dishes per service and serves 4 times. How many dishes in total?,word_problem,144
+Nina has 150 dollars and spends 78 dollars. How much money does she have left?,word_problem,72
+A zoo has 320 animals and receives 95 more. How many animals does it have now?,word_problem,415
+Sam studies 4 hours per day for 12 days. How many hours does he study in total?,word_problem,48
+A concert has 156 attendees and 89 more arrive. How many attendees are there now?,word_problem,245
+Grace has 480 tickets and sells 215. How many tickets does she have left?,word_problem,265
+A bakery produces 120 loaves per day for 6 days. How many loaves in total?,word_problem,720
+Which is greater: 567 or 489?,comparison,567
+Which is smaller: 234 or 267?,comparison,234
+Is 789 greater than 745?,comparison,True
+Which is larger: 1234 or 1189?,comparison,1234
+Is 456 less than 478?,comparison,True
+Which is smaller: 678 or 695?,comparison,678
+Which is greater: 890 or 867?,comparison,890
+Is 555 equal to 555?,comparison,True
+Which is larger: 1024 or 998?,comparison,1024
+Is 345 less than 367?,comparison,True
+What is the next number in the sequence: 50 100 150 200?,pattern,250
+Continue the pattern: 6 13 20 27,pattern,34
+What comes next: 100 200 300 400?,pattern,500
+Find the next term: 7 15 23 31?,pattern,39
+What is the next number: 45 90 135 180?,pattern,225
+Continue the sequence: 10 21 32 43,pattern,54
+What comes next: 80 160 240 320?,pattern,400
+Find the next term: 8 17 26 35?,pattern,44
+What is the next number: 55 110 165 220?,pattern,275
+Continue the pattern: 12 25 38 51,pattern,64

@@ -1,0 +1,124 @@
+# Solvra
+
+Agentic Mathematical Reasoning System for Ethos 2025 Hackathon
+
+## Overview
+
+Solvra is an end-to-end mathematical reasoning system that classifies, plans, solves, and verifies mathematical problems across multiple categories including arithmetic, algebra, geometry, logic, word problems, comparisons, and pattern recognition.
+
+## Features
+
+- Multi-category question classification using Random Forest
+- Step-by-step reasoning plan generation
+- Symbolic and numeric problem solving with SymPy
+- Solution verification with confidence scoring
+- Complete reasoning trace recording
+- Performance metrics and analysis
+- Interactive Streamlit UI
+
+## Installation
+
+```powershell
+pip install -r requirements.txt
+```
+
+## Project Structure
+
+```
+solvra/
+├── data/
+│   ├── train.csv
+│   ├── test.csv
+│   ├── output.csv
+│   └── reasoning_traces.json
+├── src/
+│   ├── classifier.py
+│   ├── planner.py
+│   ├── solver.py
+│   ├── verifier.py
+│   ├── reasoning_trace.py
+│   ├── pipeline.py
+│   ├── log_utils.py
+│   └── config.json
+├── models/
+│   └── question_type.pkl
+├── evaluation/
+│   ├── metrics.py
+│   └── analyze.py
+├── tests/
+│   ├── test_classifier.py
+│   ├── test_solver.py
+│   └── test_pipeline.py
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+## Usage
+
+### Train the Classifier
+
+```powershell
+python -c "from src.classifier import train_classifier; train_classifier('data/train.csv', 'models/question_type.pkl')"
+```
+
+### Run Pipeline
+
+```powershell
+python src/pipeline.py --input data/test.csv --output data/output.csv
+```
+
+### Evaluate Results
+
+```powershell
+python evaluation/metrics.py
+python evaluation/analyze.py
+```
+
+### Launch UI
+
+```powershell
+streamlit run app.py
+```
+
+### Run Tests
+
+```powershell
+pytest tests/
+```
+
+## Modules
+
+### classifier.py
+Trains a Random Forest classifier on question types using TF-IDF features.
+
+### planner.py
+Generates step-by-step reasoning plans based on question classification.
+
+### solver.py
+Executes mathematical operations using SymPy, NumPy, and built-in math functions.
+
+### verifier.py
+Validates solutions and assigns confidence scores.
+
+### reasoning_trace.py
+Records complete reasoning traces for interpretability.
+
+### pipeline.py
+Integrates all modules into an end-to-end processing pipeline.
+
+## Performance
+
+- Target Accuracy: 73%+
+- Average Inference Time: <1s per question
+- Macro F1 Score: Computed across all categories
+
+## Team
+
+Ethos 2025 Hackathon
+IIT Guwahati | Saptang Labs
+Machine Learning Challenge
+
+## License
+
+MIT

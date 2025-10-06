@@ -1,0 +1,318 @@
+question,type,answer
+What is 15 plus 27?,arithmetic,42
+Calculate 89 minus 34,arithmetic,55
+What is the product of 12 and 8?,arithmetic,96
+Divide 144 by 12,arithmetic,12
+What is 25 times 4?,arithmetic,100
+Find the sum of 123 and 456,arithmetic,579
+Subtract 78 from 200,arithmetic,122
+Multiply 15 by 9,arithmetic,135
+What is 500 divided by 25?,arithmetic,20
+Add 67 and 89,arithmetic,156
+What is 234 plus 567?,arithmetic,801
+Calculate 1000 minus 432,arithmetic,568
+Find the product of 25 and 16,arithmetic,400
+Divide 360 by 15,arithmetic,24
+What is 33 times 11?,arithmetic,363
+Sum 456 and 789,arithmetic,1245
+Subtract 123 from 456,arithmetic,333
+Multiply 24 by 5,arithmetic,120
+What is 625 divided by 25?,arithmetic,25
+Add 345 and 678,arithmetic,1023
+Calculate 45 plus 55,arithmetic,100
+What is 88 minus 44?,arithmetic,44
+Find the product of 7 and 13,arithmetic,91
+Divide 256 by 16,arithmetic,16
+What is 19 times 8?,arithmetic,152
+Sum 111 and 222,arithmetic,333
+Subtract 99 from 150,arithmetic,51
+Multiply 30 by 12,arithmetic,360
+What is 900 divided by 30?,arithmetic,30
+Add 234 and 876,arithmetic,1110
+What is 77 plus 23?,arithmetic,100
+Calculate 500 minus 275,arithmetic,225
+Find the product of 18 and 6,arithmetic,108
+Divide 484 by 22,arithmetic,22
+What is 45 times 3?,arithmetic,135
+Sum 567 and 234,arithmetic,801
+Subtract 444 from 888,arithmetic,444
+Multiply 50 by 8,arithmetic,400
+What is 1200 divided by 40?,arithmetic,30
+Add 789 and 321,arithmetic,1110
+Calculate 66 plus 34,arithmetic,100
+What is 150 minus 75?,arithmetic,75
+Find the product of 9 and 14,arithmetic,126
+Divide 729 by 27,arithmetic,27
+What is 22 times 13?,arithmetic,286
+Sum 890 and 110,arithmetic,1000
+Subtract 256 from 512,arithmetic,256
+Multiply 60 by 7,arithmetic,420
+What is 1600 divided by 50?,arithmetic,32
+Add 432 and 568,arithmetic,1000
+Calculate 125 plus 375,arithmetic,500
+What is 300 minus 145?,arithmetic,155
+Find the product of 11 and 15,arithmetic,165
+Divide 625 by 25,arithmetic,25
+What is 35 times 4?,arithmetic,140
+Sum 678 and 322,arithmetic,1000
+Subtract 167 from 334,arithmetic,167
+Multiply 40 by 11,arithmetic,440
+What is 2000 divided by 80?,arithmetic,25
+Add 555 and 445,arithmetic,1000
+Calculate 88 plus 112,arithmetic,200
+What is 400 minus 189?,arithmetic,211
+Find the product of 17 and 5,arithmetic,85
+Divide 961 by 31,arithmetic,31
+What is 28 times 9?,arithmetic,252
+Sum 246 and 754,arithmetic,1000
+Subtract 333 from 999,arithmetic,666
+Multiply 75 by 6,arithmetic,450
+What is 2400 divided by 60?,arithmetic,40
+Add 654 and 346,arithmetic,1000
+Solve for x: x + 5 = 12,algebra,7
+Find x when 2x = 18,algebra,9
+Solve x - 7 = 15,algebra,22
+What is x if 3x = 27?,algebra,9
+Solve for x: x + 10 = 25,algebra,15
+Find x when 5x = 45,algebra,9
+Solve x - 12 = 8,algebra,20
+What is x if 4x = 32?,algebra,8
+Solve for x: x + 8 = 20,algebra,12
+Find x when 6x = 54,algebra,9
+Solve x - 5 = 10,algebra,15
+What is x if 7x = 49?,algebra,7
+Solve for x: x + 15 = 30,algebra,15
+Find x when 8x = 64,algebra,8
+Solve x - 9 = 16,algebra,25
+What is x if 9x = 81?,algebra,9
+Solve for x: x + 20 = 50,algebra,30
+Find x when 10x = 100,algebra,10
+Solve x - 14 = 6,algebra,20
+What is x if 11x = 121?,algebra,11
+Solve for x: x + 25 = 75,algebra,50
+Find x when 12x = 144,algebra,12
+Solve x - 18 = 12,algebra,30
+What is x if 13x = 169?,algebra,13
+Solve for x: x + 30 = 80,algebra,50
+Find x when 15x = 180,algebra,12
+Solve x - 22 = 8,algebra,30
+What is x if 14x = 196?,algebra,14
+Solve for x: x + 35 = 100,algebra,65
+Find x when 16x = 256,algebra,16
+Solve x - 25 = 15,algebra,40
+What is x if 17x = 289?,algebra,17
+Solve for x: x + 40 = 90,algebra,50
+Find x when 18x = 324,algebra,18
+Solve x - 30 = 20,algebra,50
+What is x if 19x = 361?,algebra,19
+Solve for x: x + 45 = 120,algebra,75
+Find x when 20x = 400,algebra,20
+Solve x - 35 = 25,algebra,60
+What is x if 21x = 441?,algebra,21
+Solve for x: x + 50 = 150,algebra,100
+Find x when 22x = 484,algebra,22
+Solve x - 40 = 30,algebra,70
+What is x if 23x = 529?,algebra,23
+Solve for x: x + 55 = 155,algebra,100
+Find x when 24x = 576,algebra,24
+Solve x - 45 = 35,algebra,80
+What is x if 25x = 625?,algebra,25
+Solve for x: x + 60 = 180,algebra,120
+Find x when 26x = 676,algebra,26
+Solve x - 50 = 40,algebra,90
+What is x if 27x = 729?,algebra,27
+Solve for x: x + 65 = 200,algebra,135
+Find x when 28x = 784,algebra,28
+Solve x - 55 = 45,algebra,100
+What is x if 29x = 841?,algebra,29
+Solve for x: x + 70 = 220,algebra,150
+Find x when 30x = 900,algebra,30
+Solve x - 60 = 50,algebra,110
+What is x if 31x = 961?,algebra,31
+Solve for x: x + 75 = 250,algebra,175
+Find x when 32x = 1024,algebra,32
+Solve x - 65 = 55,algebra,120
+What is x if 33x = 1089?,algebra,33
+Solve for x: x + 80 = 280,algebra,200
+Find x when 35x = 1225,algebra,35
+What is the area of a rectangle with length 8 and width 5?,geometry,40
+Find the perimeter of a square with side 6,geometry,24
+What is the area of a circle with radius 7?,geometry,153.938
+Calculate the area of a triangle with base 10 and height 8,geometry,40
+What is the perimeter of a rectangle with length 12 and width 7?,geometry,38
+Find the area of a square with side 9,geometry,81
+What is the volume of a cube with side 4?,geometry,64
+Calculate the area of a circle with radius 5,geometry,78.54
+What is the area of a triangle with base 6 and height 4?,geometry,12
+Find the perimeter of a square with side 10,geometry,40
+What is the area of a rectangle with length 15 and width 4?,geometry,60
+Calculate the volume of a cube with side 5,geometry,125
+What is the area of a circle with radius 10?,geometry,314.159
+Find the area of a triangle with base 12 and height 5,geometry,30
+What is the perimeter of a rectangle with length 20 and width 10?,geometry,60
+Calculate the area of a square with side 12,geometry,144
+What is the volume of a cube with side 6?,geometry,216
+Find the area of a circle with radius 8,geometry,201.062
+What is the area of a triangle with base 14 and height 7?,geometry,49
+Calculate the perimeter of a square with side 15,geometry,60
+What is the area of a rectangle with length 18 and width 6?,geometry,108
+Find the volume of a cube with side 7,geometry,343
+What is the area of a circle with radius 9?,geometry,254.469
+Calculate the area of a triangle with base 16 and height 6,geometry,48
+What is the perimeter of a rectangle with length 25 and width 8?,geometry,66
+Find the area of a square with side 14,geometry,196
+What is the volume of a cube with side 8?,geometry,512
+Calculate the area of a circle with radius 6,geometry,113.097
+What is the area of a triangle with base 18 and height 8?,geometry,72
+Find the perimeter of a square with side 18,geometry,72
+What is the area of a rectangle with length 22 and width 5?,geometry,110
+Calculate the volume of a cube with side 9,geometry,729
+What is the area of a circle with radius 4?,geometry,50.265
+Find the area of a triangle with base 20 and height 9,geometry,90
+What is the perimeter of a rectangle with length 30 and width 12?,geometry,84
+Calculate the area of a square with side 16,geometry,256
+What is the volume of a cube with side 10?,geometry,1000
+Find the area of a circle with radius 11,geometry,380.133
+What is the area of a triangle with base 22 and height 10?,geometry,110
+Calculate the perimeter of a square with side 20,geometry,80
+What is the area of a rectangle with length 24 and width 9?,geometry,216
+Find the volume of a cube with side 11,geometry,1331
+What is the area of a circle with radius 12?,geometry,452.389
+Calculate the area of a triangle with base 24 and height 11,geometry,132
+What is the perimeter of a rectangle with length 28 and width 14?,geometry,84
+Find the area of a square with side 17,geometry,289
+What is the volume of a cube with side 12?,geometry,1728
+Calculate the area of a circle with radius 13,geometry,530.929
+What is the area of a triangle with base 26 and height 12?,geometry,156
+Find the perimeter of a square with side 22,geometry,88
+What is the area of a rectangle with length 30 and width 10?,geometry,300
+Calculate the volume of a cube with side 13,geometry,2197
+What is the area of a circle with radius 14?,geometry,615.752
+Find the area of a triangle with base 28 and height 13,geometry,182
+What is the perimeter of a rectangle with length 32 and width 16?,geometry,96
+Calculate the area of a square with side 19,geometry,361
+What is the volume of a cube with side 14?,geometry,2744
+Find the area of a circle with radius 15,geometry,706.858
+What is the area of a triangle with base 30 and height 14?,geometry,210
+Calculate the perimeter of a square with side 25,geometry,100
+What is the area of a rectangle with length 35 and width 12?,geometry,420
+Is true AND false equal to false?,logic,True
+What is NOT true?,logic,False
+Is false OR true equal to true?,logic,True
+What is true AND true?,logic,True
+Is NOT false equal to true?,logic,True
+What is false AND false?,logic,False
+Is true OR false equal to true?,logic,True
+What is NOT (true AND false)?,logic,True
+Is (true OR false) AND true equal to true?,logic,True
+What is false OR false?,logic,False
+Is true AND (false OR true) equal to true?,logic,True
+What is NOT (false OR false)?,logic,True
+Is (false AND true) OR true equal to true?,logic,True
+What is true OR true?,logic,True
+Is NOT (true OR false) equal to false?,logic,True
+What is (true AND true) AND true?,logic,True
+Is false OR (true AND false) equal to false?,logic,True
+What is NOT (false AND false)?,logic,True
+Is (true OR true) AND false equal to false?,logic,True
+What is (false OR true) OR false?,logic,True
+Is NOT (true AND true) equal to false?,logic,True
+What is true AND (true OR false)?,logic,True
+Is (false AND false) OR false equal to false?,logic,True
+What is NOT (false OR true)?,logic,False
+Is true OR (false AND false) equal to true?,logic,True
+What is (true AND false) AND false?,logic,False
+Is NOT (true OR true) equal to false?,logic,True
+What is false OR (false OR true)?,logic,True
+Is (true OR false) OR (false AND true) equal to true?,logic,True
+What is NOT (false AND true)?,logic,True
+Sarah has 45 apples and buys 32 more. How many apples does she have in total?,word_problem,77
+A store had 120 books and sold 48. How many books are left?,word_problem,72
+John walks 3 miles per day for 7 days. How many miles does he walk in total?,word_problem,21
+A baker makes 24 cookies per batch and makes 5 batches. How many cookies in total?,word_problem,120
+Maria has 80 dollars and spends 35 dollars. How much money does she have left?,word_problem,45
+A farmer has 150 chickens and buys 75 more. How many chickens does he have now?,word_problem,225
+Tom reads 25 pages per day for 6 days. How many pages does he read in total?,word_problem,150
+A class has 28 students and 12 more join. How many students are there now?,word_problem,40
+Emma has 200 stamps and gives away 85. How many stamps does she have left?,word_problem,115
+A factory produces 500 units per day for 5 days. How many units in total?,word_problem,2500
+Lisa has 65 marbles and loses 28. How many marbles does she have left?,word_problem,37
+A library has 300 books and receives 125 more. How many books does it have now?,word_problem,425
+Mike runs 5 kilometers per day for 10 days. How many kilometers does he run in total?,word_problem,50
+A shop sells 18 items per hour for 8 hours. How many items does it sell?,word_problem,144
+Anna has 250 coins and spends 90. How many coins does she have left?,word_problem,160
+A garden has 180 flowers and 60 more are planted. How many flowers are there now?,word_problem,240
+David writes 12 emails per day for 9 days. How many emails does he write in total?,word_problem,108
+A team has 35 members and 15 more join. How many members are there now?,word_problem,50
+Sophie has 400 beads and uses 175. How many beads does she have left?,word_problem,225
+A restaurant serves 80 meals per day for 7 days. How many meals in total?,word_problem,560
+Ben has 95 cards and buys 48 more. How many cards does he have in total?,word_problem,143
+A warehouse has 600 boxes and ships 250. How many boxes are left?,word_problem,350
+Kate paints 8 pictures per week for 4 weeks. How many pictures does she paint in total?,word_problem,32
+A store has 75 toys and receives 45 more. How many toys does it have now?,word_problem,120
+Ryan has 320 points and loses 140. How many points does he have left?,word_problem,180
+A school has 450 students and 180 more enroll. How many students are there now?,word_problem,630
+Laura bakes 15 cakes per day for 6 days. How many cakes does she bake in total?,word_problem,90
+A group has 42 people and 18 more arrive. How many people are there now?,word_problem,60
+Oliver has 500 stickers and gives away 225. How many stickers does he have left?,word_problem,275
+A cinema shows 12 movies per week for 5 weeks. How many movies in total?,word_problem,60
+Which is greater: 45 or 38?,comparison,45
+Which is smaller: 72 or 89?,comparison,72
+Is 156 greater than 134?,comparison,True
+Which is larger: 234 or 198?,comparison,234
+Is 67 less than 89?,comparison,True
+Which is smaller: 345 or 312?,comparison,312
+Which is greater: 500 or 475?,comparison,500
+Is 234 equal to 234?,comparison,True
+Which is larger: 678 or 654?,comparison,678
+Is 445 less than 467?,comparison,True
+Which is smaller: 789 or 812?,comparison,789
+Which is greater: 923 or 901?,comparison,923
+Is 567 greater than 543?,comparison,True
+Which is larger: 1024 or 998?,comparison,1024
+Is 234 less than 256?,comparison,True
+Which is smaller: 432 or 445?,comparison,432
+Which is greater: 667 or 634?,comparison,667
+Is 890 equal to 890?,comparison,True
+Which is larger: 1234 or 1198?,comparison,1234
+Is 567 less than 589?,comparison,True
+Which is smaller: 345 or 367?,comparison,345
+Which is greater: 789 or 756?,comparison,789
+Is 456 greater than 434?,comparison,True
+Which is larger: 890 or 867?,comparison,890
+Is 678 less than 699?,comparison,True
+Which is smaller: 912 or 934?,comparison,912
+Which is greater: 1045 or 1023?,comparison,1045
+Is 345 equal to 345?,comparison,True
+Which is larger: 567 or 545?,comparison,567
+Is 789 less than 812?,comparison,True
+What is the next number in the sequence: 2 4 6 8?,pattern,10
+Continue the pattern: 5 10 15 20,pattern,25
+What comes next: 3 6 9 12?,pattern,15
+Find the next term: 10 20 30 40,pattern,50
+What is the next number: 7 14 21 28?,pattern,35
+Continue the sequence: 4 8 12 16,pattern,20
+What comes next: 15 30 45 60?,pattern,75
+Find the next term: 1 3 5 7?,pattern,9
+What is the next number: 12 24 36 48?,pattern,60
+Continue the pattern: 8 16 24 32,pattern,40
+What comes next: 9 18 27 36?,pattern,45
+Find the next term: 20 40 60 80,pattern,100
+What is the next number: 6 12 18 24?,pattern,30
+Continue the sequence: 11 22 33 44,pattern,55
+What comes next: 25 50 75 100?,pattern,125
+Find the next term: 2 5 8 11?,pattern,14
+What is the next number: 13 26 39 52?,pattern,65
+Continue the pattern: 14 28 42 56,pattern,70
+What comes next: 30 60 90 120?,pattern,150
+Find the next term: 3 7 11 15?,pattern,19
+What is the next number: 16 32 48 64?,pattern,80
+Continue the sequence: 17 34 51 68,pattern,85
+What comes next: 35 70 105 140?,pattern,175
+Find the next term: 4 9 14 19?,pattern,24
+What is the next number: 18 36 54 72?,pattern,90
+Continue the pattern: 19 38 57 76,pattern,95
+What comes next: 40 80 120 160?,pattern,200
+Find the next term: 5 11 17 23?,pattern,29
+What is the next number: 21 42 63 84?,pattern,105
+Continue the sequence: 22 44 66 88,pattern,110
