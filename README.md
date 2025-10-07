@@ -87,6 +87,74 @@ streamlit run app.py
 pytest tests/
 ```
 
+## Testing Solvra
+
+I've created a comprehensive test suite to validate Solvra's problem-solving capabilities across all supported categories.
+
+### Test Files
+
+- **`test_cases.json`**: Contains 28 handcrafted test questions covering all 7 problem types
+  - Each question includes the problem text, expected answer, type, and difficulty level
+  - 4 questions per category (Arithmetic, Algebra, Geometry, Logic, Word Problems, Comparison, Pattern)
+
+- **`run_tests.py`**: Interactive test runner that processes all test cases and displays results
+
+### Running Tests
+
+**Run all test categories:**
+```powershell
+python run_tests.py
+```
+
+**Run specific category only:**
+```powershell
+python run_tests.py arithmetic
+python run_tests.py algebra
+python run_tests.py geometry
+# ... etc for logic, word_problem, comparison, pattern
+```
+
+### What the Test Runner Shows
+
+For each test question, you'll see:
+- The question text
+- Expected problem type and answer
+- Detected problem type (from classifier)
+- Solvra's computed answer
+- Confidence score
+- Whether type detection was correct
+
+### Example Output
+
+```
+==============================================================
+                    ARITHMETIC TESTS                    
+==============================================================
+
+[Test 1] Calculate: (45 + 23) * 2 - 18 / 3
+  Expected type: arithmetic
+  Expected answer: 130
+  Detected type: arithmetic
+  My answer: 130.0
+  Confidence: 100.0%
+  ✓ Type detected correctly!
+```
+
+### Adding Your Own Tests
+
+Edit `test_cases.json` and add questions in this format:
+
+```json
+{
+  "question": "Your math question here",
+  "expected_answer": "The answer",
+  "type": "arithmetic",
+  "difficulty": "easy"
+}
+```
+
+The test runner will automatically pick up new questions on the next run!
+
 ## Modules
 
 ### classifier.py
