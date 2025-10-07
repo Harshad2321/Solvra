@@ -7,9 +7,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from src.pipeline import SolvraPipeline
 import json
 
-st.set_page_config(page_title="Solvra", page_icon="🧮", layout="wide")
+st.set_page_config(page_title="Solvra", page_icon="", layout="wide")
 
-st.title("🧮 Solvra")
+st.title(" Solvra")
 st.subheader("Agentic Mathematical Reasoning System")
 
 @st.cache_resource

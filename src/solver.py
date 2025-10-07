@@ -43,6 +43,37 @@ class MathSolver:
     def solve_arithmetic(self, question, plan):
         steps = []
         
+        # Check for specialized problem types first
+        if 'matrix' in question.lower() or 'determinant' in question.lower() or 'eigenvalue' in question.lower():
+            result, steps = self.solve_matrix_problem(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['derivative', 'integral', 'limit', 'd/dx', '∫']):
+            result, steps = self.solve_calculus_problem(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['gcd', 'lcm', 'prime', 'mod', 'modulo', 'totient', 'euler']):
+            result, steps = self.solve_number_theory(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['permutation', 'combination', 'choose', 'factorial', 'catalan']):
+            result, steps = self.solve_combinatorics(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if 'complex' in question.lower() or ('+' in question and 'i' in question.lower()):
+            result, steps = self.solve_complex_numbers(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['sin', 'cos', 'tan', 'trigonometric']):
+            result, steps = self.solve_trigonometry(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
         # Check for nested radicals
         if '√' in question or 'sqrt' in question.lower() or 'radical' in question.lower():
             result, steps = self.solve_nested_radicals(question, steps)
@@ -875,8 +906,390 @@ class MathSolver:
             steps.append(f"Optimization error: {e}")
             return None, steps
     
+    def solve_matrix_problem(self, question, steps):
+        """Solve matrix operations: determinant, eigenvalues, inverse"""
+        try:
+            steps.append("Detected matrix problem")
+            
+            # Extract matrix entries
+            # Look for patterns like [[1,2],[3,4]] or matrix with entries
+            matrix_pattern = r'\[\[([^\]]+)\],\s*\[([^\]]+)\]\]|\[\s*([^\]]+?)\s*\]'
+            matches = re.findall(r'\d+', question)
+            
+            if len(matches) >= 4:
+                # Try 2x2 matrix
+                n = int(np.sqrt(len(matches)))
+                if n * n == len(matches):
+                    nums = [int(m) for m in matches[:n*n]]
+                    matrix_data = [nums[i:i+n] for i in range(0, len(nums), n)]
+                    M = sp.Matrix(matrix_data)
+                    steps.append(f"Matrix: {M}")
+                    
+                    if 'determinant' in question.lower() or 'det' in question.lower():
+                        det = M.det()
+                        steps.append(f"Determinant = {det}")
+                        return det, steps
+                    
+                    elif 'eigenvalue' in question.lower():
+                        eigenvals = M.eigenvals()
+                        steps.append(f"Eigenvalues: {eigenvals}")
+                        return str(eigenvals), steps
+                    
+                    elif 'inverse' in question.lower():
+                        try:
+                            M_inv = M.inv()
+                            steps.append(f"Inverse: {M_inv}")
+                            return str(M_inv), steps
+                        except:
+                            steps.append("Matrix is singular (no inverse)")
+                            return "No inverse", steps
+                    
+                    elif 'trace' in question.lower():
+                        tr = M.trace()
+                        steps.append(f"Trace = {tr}")
+                        return tr, steps
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Matrix error: {e}")
+            return None, steps
+    
+    def solve_calculus_problem(self, question, steps):
+        """Solve basic calculus: derivatives, integrals, limits"""
+        try:
+            steps.append("Detected calculus problem")
+            
+            # Parse expression
+            expr_match = re.search(r'f\(x\)\s*=\s*([^,\.]+)', question)
+            if not expr_match:
+                expr_match = re.search(r'y\s*=\s*([^,\.]+)', question)
+            if not expr_match:
+                expr_match = re.search(r'd/dx\s*\(([^)]+)\)', question)
+            
+            if expr_match:
+                expr_str = expr_match.group(1).strip()
+                expr_str = expr_str.replace('^', '**').replace('²', '**2').replace('³', '**3')
+                
+                try:
+                    expr = parse_expr(expr_str, transformations=self.transformations)
+                    steps.append(f"Expression: {expr}")
+                    
+                    if 'derivative' in question.lower() or 'd/dx' in question.lower() or "f'" in question:
+                        derivative = sp.diff(expr, self.x)
+                        steps.append(f"Derivative: d/dx({expr}) = {derivative}")
+                        
+                        # Evaluate at a point if specified
+                        at_match = re.search(r'at\s+x\s*=\s*(-?\d+\.?\d*)', question)
+                        if at_match:
+                            x_val = float(at_match.group(1))
+                            result = derivative.subs(self.x, x_val)
+                            steps.append(f"At x={x_val}: f'({x_val}) = {result}")
+                            return float(result), steps
+                        
+                        return str(derivative), steps
+                    
+                    elif 'integral' in question.lower() or '∫' in question:
+                        integral = sp.integrate(expr, self.x)
+                        steps.append(f"Integral: ∫{expr}dx = {integral} + C")
+                        
+                        # Definite integral if bounds given
+                        bounds_match = re.search(r'from\s+(-?\d+\.?\d*)\s+to\s+(-?\d+\.?\d*)', question)
+                        if bounds_match:
+                            a = float(bounds_match.group(1))
+                            b = float(bounds_match.group(2))
+                            result = sp.integrate(expr, (self.x, a, b))
+                            steps.append(f"Definite integral [{a},{b}]: {result}")
+                            return float(result), steps
+                        
+                        return str(integral), steps
+                    
+                    elif 'limit' in question.lower() or 'lim' in question.lower():
+                        # Extract limit point
+                        limit_match = re.search(r'x\s*->\s*(-?\d+\.?\d*|inf|infinity)', question, re.IGNORECASE)
+                        if limit_match:
+                            limit_point = limit_match.group(1)
+                            if 'inf' in limit_point.lower():
+                                limit_val = sp.oo
+                            else:
+                                limit_val = float(limit_point)
+                            
+                            result = sp.limit(expr, self.x, limit_val)
+                            steps.append(f"lim(x→{limit_point}) {expr} = {result}")
+                            return str(result), steps
+                
+                except Exception as e:
+                    steps.append(f"Expression parsing error: {e}")
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Calculus error: {e}")
+            return None, steps
+    
+    def solve_number_theory(self, question, steps):
+        """Solve number theory: GCD, LCM, prime factorization, modular arithmetic"""
+        try:
+            steps.append("Detected number theory problem")
+            
+            numbers = re.findall(r'\d+', question)
+            if len(numbers) >= 2:
+                nums = [int(n) for n in numbers[:5]]  # Take first 5 numbers
+                
+                if 'gcd' in question.lower() or 'greatest common divisor' in question.lower():
+                    from math import gcd
+                    from functools import reduce
+                    result = reduce(gcd, nums)
+                    steps.append(f"GCD({', '.join(map(str, nums))}) = {result}")
+                    return result, steps
+                
+                elif 'lcm' in question.lower() or 'least common multiple' in question.lower():
+                    from math import gcd
+                    def lcm(a, b):
+                        return abs(a * b) // gcd(a, b)
+                    from functools import reduce
+                    result = reduce(lcm, nums)
+                    steps.append(f"LCM({', '.join(map(str, nums))}) = {result}")
+                    return result, steps
+                
+                elif 'prime factor' in question.lower() or 'factorization' in question.lower():
+                    n = nums[0]
+                    factors = sp.factorint(n)
+                    steps.append(f"Prime factorization of {n}:")
+                    factorization = ' × '.join([f"{p}^{e}" if e > 1 else str(p) for p, e in factors.items()])
+                    steps.append(f"{n} = {factorization}")
+                    return str(factors), steps
+                
+                elif 'mod' in question.lower() or 'modulo' in question.lower() or '%' in question:
+                    if len(nums) >= 2:
+                        a, m = nums[0], nums[1]
+                        result = a % m
+                        steps.append(f"{a} mod {m} = {result}")
+                        
+                        # Check for modular inverse
+                        if 'inverse' in question.lower():
+                            try:
+                                inv = pow(a, -1, m)
+                                steps.append(f"Modular inverse: {a}^(-1) ≡ {inv} (mod {m})")
+                                return inv, steps
+                            except:
+                                steps.append(f"{a} has no modular inverse mod {m}")
+                                return None, steps
+                        
+                        return result, steps
+                
+                elif 'euler' in question.lower() or 'totient' in question.lower() or 'φ' in question:
+                    n = nums[0]
+                    phi = sp.totient(n)
+                    steps.append(f"Euler's totient: φ({n}) = {phi}")
+                    return phi, steps
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Number theory error: {e}")
+            return None, steps
+    
+    def solve_combinatorics(self, question, steps):
+        """Solve combinatorics: permutations, combinations, binomial coefficients"""
+        try:
+            steps.append("Detected combinatorics problem")
+            
+            numbers = re.findall(r'\d+', question)
+            if len(numbers) >= 2:
+                n = int(numbers[0])
+                r = int(numbers[1])
+                
+                if 'permutation' in question.lower() or 'P(' in question:
+                    from math import factorial
+                    result = factorial(n) // factorial(n - r)
+                    steps.append(f"P({n}, {r}) = {n}! / ({n}-{r})! = {result}")
+                    return result, steps
+                
+                elif 'combination' in question.lower() or 'C(' in question or 'choose' in question.lower():
+                    result = sp.binomial(n, r)
+                    steps.append(f"C({n}, {r}) = {n}! / ({r}! × ({n}-{r})!) = {result}")
+                    return int(result), steps
+                
+                elif 'binomial' in question.lower():
+                    result = sp.binomial(n, r)
+                    steps.append(f"Binomial coefficient C({n},{r}) = {result}")
+                    return int(result), steps
+            
+            elif len(numbers) == 1:
+                n = int(numbers[0])
+                if 'factorial' in question.lower() or '!' in question:
+                    from math import factorial
+                    result = factorial(n)
+                    steps.append(f"{n}! = {result}")
+                    return result, steps
+                
+                elif 'fibonacci' in question.lower():
+                    # nth Fibonacci number
+                    fib = sp.fibonacci(n)
+                    steps.append(f"F({n}) = {fib}")
+                    return int(fib), steps
+                
+                elif 'catalan' in question.lower():
+                    # nth Catalan number
+                    catalan = sp.catalan(n)
+                    steps.append(f"Catalan({n}) = {catalan}")
+                    return int(catalan), steps
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Combinatorics error: {e}")
+            return None, steps
+    
+    def solve_complex_numbers(self, question, steps):
+        """Solve complex number problems"""
+        try:
+            steps.append("Detected complex number problem")
+            
+            # Look for complex number notation: a+bi, polar form
+            complex_pattern = r'(-?\d+\.?\d*)\s*\+\s*(-?\d+\.?\d*)i|(-?\d+\.?\d*)i'
+            matches = re.findall(complex_pattern, question)
+            
+            if matches:
+                # Parse complex numbers
+                complex_nums = []
+                for match in matches[:2]:  # Take first 2 complex numbers
+                    if match[0]:  # a+bi form
+                        real, imag = float(match[0]), float(match[1])
+                    else:  # just bi form
+                        real, imag = 0, float(match[2])
+                    complex_nums.append(complex(real, imag))
+                    steps.append(f"Found: {real} + {imag}i")
+                
+                if len(complex_nums) >= 1:
+                    z = complex_nums[0]
+                    
+                    if 'magnitude' in question.lower() or 'modulus' in question.lower() or '|z|' in question:
+                        mag = abs(z)
+                        steps.append(f"|z| = √({z.real}² + {z.imag}²) = {mag}")
+                        return mag, steps
+                    
+                    elif 'argument' in question.lower() or 'phase' in question.lower() or 'angle' in question.lower():
+                        import cmath
+                        arg = cmath.phase(z)
+                        arg_deg = np.degrees(arg)
+                        steps.append(f"arg(z) = arctan({z.imag}/{z.real}) = {arg} rad = {arg_deg}°")
+                        return arg, steps
+                    
+                    elif 'conjugate' in question.lower():
+                        conj = z.conjugate()
+                        steps.append(f"Conjugate: z* = {conj.real} - {conj.imag}i")
+                        return str(conj), steps
+                    
+                    elif 'polar' in question.lower():
+                        mag = abs(z)
+                        import cmath
+                        arg = cmath.phase(z)
+                        steps.append(f"Polar form: z = {mag} × e^(i×{arg})")
+                        steps.append(f"Or: z = {mag}(cos({arg}) + i×sin({arg}))")
+                        return f"{mag}∠{arg}", steps
+                
+                if len(complex_nums) >= 2:
+                    z1, z2 = complex_nums[0], complex_nums[1]
+                    
+                    if '+' in question and 'add' not in question.lower():
+                        result = z1 + z2
+                        steps.append(f"({z1}) + ({z2}) = {result}")
+                        return str(result), steps
+                    
+                    elif '*' in question or 'multiply' in question.lower():
+                        result = z1 * z2
+                        steps.append(f"({z1}) × ({z2}) = {result}")
+                        return str(result), steps
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Complex number error: {e}")
+            return None, steps
+    
+    def solve_trigonometry(self, question, steps):
+        """Solve trigonometric problems"""
+        try:
+            steps.append("Detected trigonometry problem")
+            
+            # Extract angle
+            angle_match = re.search(r'(\d+\.?\d*)\s*(degree|deg|°|radian|rad)?', question)
+            if angle_match:
+                angle_val = float(angle_match.group(1))
+                unit = angle_match.group(2) if angle_match.group(2) else 'degree'
+                
+                # Convert to radians if needed
+                if 'deg' in unit.lower() or '°' in unit:
+                    angle_rad = np.radians(angle_val)
+                    steps.append(f"Angle: {angle_val}° = {angle_rad} rad")
+                else:
+                    angle_rad = angle_val
+                    steps.append(f"Angle: {angle_rad} rad")
+                
+                if 'sin' in question.lower():
+                    result = np.sin(angle_rad)
+                    steps.append(f"sin({angle_val}) = {result}")
+                    return result, steps
+                
+                elif 'cos' in question.lower():
+                    result = np.cos(angle_rad)
+                    steps.append(f"cos({angle_val}) = {result}")
+                    return result, steps
+                
+                elif 'tan' in question.lower():
+                    result = np.tan(angle_rad)
+                    steps.append(f"tan({angle_val}) = {result}")
+                    return result, steps
+            
+            # Trigonometric identities
+            if 'identity' in question.lower() or 'prove' in question.lower():
+                if 'sin²' in question or 'cos²' in question:
+                    steps.append("Pythagorean identity: sin²(θ) + cos²(θ) = 1")
+                    return "sin²(θ) + cos²(θ) = 1", steps
+                
+                elif 'double angle' in question.lower():
+                    steps.append("Double angle formulas:")
+                    steps.append("sin(2θ) = 2sin(θ)cos(θ)")
+                    steps.append("cos(2θ) = cos²(θ) - sin²(θ) = 2cos²(θ) - 1 = 1 - 2sin²(θ)")
+                    return "See steps", steps
+            
+            return None, steps
+        except Exception as e:
+            steps.append(f"Trigonometry error: {e}")
+            return None, steps
+    
     def solve_generic(self, question, plan):
         steps = []
+        
+        # Try specialized solvers based on keywords
+        if 'matrix' in question.lower() or 'determinant' in question.lower() or 'eigenvalue' in question.lower():
+            result, steps = self.solve_matrix_problem(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['derivative', 'integral', 'limit', 'd/dx', '∫']):
+            result, steps = self.solve_calculus_problem(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['gcd', 'lcm', 'prime', 'mod', 'modulo', 'totient', 'euler']):
+            result, steps = self.solve_number_theory(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['permutation', 'combination', 'choose', 'factorial', 'catalan']):
+            result, steps = self.solve_combinatorics(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if 'complex' in question.lower() or '+' in question and 'i' in question.lower():
+            result, steps = self.solve_complex_numbers(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        if any(word in question.lower() for word in ['sin', 'cos', 'tan', 'trigonometric']):
+            result, steps = self.solve_trigonometry(question, steps)
+            if result is not None:
+                return {'answer': result, 'steps': steps}
+        
+        # Default fallback
         numbers = re.findall(r'-?\d+\.?\d*', question)
         numbers = [float(n) for n in numbers]
         
