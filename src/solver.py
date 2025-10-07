@@ -43,6 +43,13 @@ class MathSolver:
     def solve_arithmetic(self, question, plan):
         steps = []
         
+        # Check if this is actually a word problem that was misclassified
+        word_problem_keywords = ['discount', 'trains', 'toward each other', 'travels', 'km/h', 
+                                  'buys', 'gives', 'apples', 'depreciate']
+        if any(keyword in question.lower() for keyword in word_problem_keywords):
+            steps.append("Detected word problem - forwarding to word problem solver")
+            return self.solve_word_problem(question, plan)
+        
         # Check for specialized problem types first
         if 'matrix' in question.lower() or 'determinant' in question.lower() or 'eigenvalue' in question.lower():
             result, steps = self.solve_matrix_problem(question, steps)
@@ -80,22 +87,45 @@ class MathSolver:
             if result is not None:
                 return {'answer': result, 'steps': steps}
         
+        # Try to extract and evaluate mathematical expression with proper order of operations
+        expr_pattern = r'[\(\)\d+\-*/\^\s]+(?:[+\-*/\^][\(\)\d+\-*/\^\s]+)*'
+        expr_matches = re.findall(expr_pattern, question)
+        
+        for expr_str in expr_matches:
+            # Clean up the expression
+            expr_clean = expr_str.strip()
+            if len(expr_clean) > 3 and any(op in expr_clean for op in ['+', '-', '*', '/', '^', '(', ')']):
+                try:
+                    # Replace ^ with ** for exponentiation
+                    expr_clean = expr_clean.replace('^', '**')
+                    steps.append(f"Found expression: {expr_str}")
+                    steps.append(f"Evaluating with proper order of operations...")
+                    
+                    # Use SymPy to evaluate with correct order of operations
+                    result = float(sp.sympify(expr_clean))
+                    steps.append(f"Result: {result}")
+                    return {'answer': result, 'steps': steps}
+                except Exception as e:
+                    steps.append(f"Expression parsing error: {e}")
+                    continue
+        
+        # Fallback: extract numbers and perform simple operations
         numbers = re.findall(r'-?\d+\.?\d*', question)
         numbers = [float(n) for n in numbers]
         
         steps.append(f"Identified numbers: {numbers}")
         
         result = None
-        if 'sum' in question.lower() or 'add' in question.lower() or '+' in question:
+        if 'sum' in question.lower() or 'add' in question.lower():
             result = sum(numbers)
             steps.append(f"Calculated sum: {result}")
-        elif 'product' in question.lower() or 'multiply' in question.lower() or '*' in question:
+        elif 'product' in question.lower() or 'multiply' in question.lower():
             result = np.prod(numbers)
             steps.append(f"Calculated product: {result}")
-        elif 'difference' in question.lower() or 'subtract' in question.lower() or '-' in question:
+        elif 'difference' in question.lower() or 'subtract' in question.lower():
             result = numbers[0] - sum(numbers[1:]) if len(numbers) > 1 else numbers[0]
             steps.append(f"Calculated difference: {result}")
-        elif 'quotient' in question.lower() or 'divide' in question.lower() or '/' in question:
+        elif 'quotient' in question.lower() or 'divide' in question.lower():
             result = numbers[0] / numbers[1] if len(numbers) > 1 else numbers[0]
             steps.append(f"Calculated quotient: {result}")
         else:
@@ -321,6 +351,89 @@ class MathSolver:
         
         result = None
         
+        # Distance = Speed × Time problems
+        if any(word in question.lower() for word in ['travels', 'speed', 'distance', 'km/h', 'mph']):
+            steps.append("Detected distance/speed/time problem")
+            if 'how long' in question.lower() or 'time' in question.lower():
+                # Calculate time: time = distance / speed
+                if len(numbers) >= 2:
+                    distance = numbers[1] if len(numbers) > 2 else numbers[-1]
+                    speed = numbers[0]
+                    result = distance / speed
+                    steps.append(f"Distance: {distance}, Speed: {speed}")
+                    steps.append(f"Time = Distance/Speed = {distance}/{speed} = {result}")
+                    return {'answer': result, 'steps': steps}
+            elif 'how far' in question.lower() or 'distance' in question.lower():
+                # Calculate distance: distance = speed × time
+                if len(numbers) >= 2:
+                    speed = numbers[0]
+                    time = numbers[1]
+                    result = speed * time
+                    steps.append(f"Speed: {speed}, Time: {time}")
+                    steps.append(f"Distance = Speed × Time = {speed} × {time} = {result}")
+                    return {'answer': result, 'steps': steps}
+        
+        # Two trains/objects moving toward each other
+        if 'toward each other' in question.lower() or 'towards each other' in question.lower():
+            steps.append("Detected relative motion problem")
+            if len(numbers) >= 3:
+                distance = numbers[0]
+                speed1 = numbers[1]
+                speed2 = numbers[2]
+                combined_speed = speed1 + speed2
+                result = distance / combined_speed
+                steps.append(f"Total distance: {distance}")
+                steps.append(f"Speed 1: {speed1}, Speed 2: {speed2}")
+                steps.append(f"Combined speed: {combined_speed}")
+                steps.append(f"Time to meet = Distance/Combined Speed = {result}")
+                return {'answer': result, 'steps': steps}
+        
+        # Consecutive numbers problems
+        if 'consecutive' in question.lower() and 'sum' in question.lower():
+            steps.append("Detected consecutive numbers problem")
+            if 'even' in question.lower():
+                steps.append("Looking for consecutive even numbers")
+                if len(numbers) >= 1:
+                    total = numbers[0]
+                    # For 3 consecutive even: n + (n+2) + (n+4) = total
+                    # 3n + 6 = total, so n = (total - 6) / 3
+                    n = (total - 6) / 3
+                    result = f"{n}, {n+2}, {n+4}"
+                    steps.append(f"Let first even number be n")
+                    steps.append(f"n + (n+2) + (n+4) = {total}")
+                    steps.append(f"3n + 6 = {total}")
+                    steps.append(f"n = {n}")
+                    steps.append(f"Numbers are: {result}")
+                    return {'answer': n, 'steps': steps}  # Return middle number
+        
+        # Discount/percentage problems
+        if 'discount' in question.lower() or 'percent' in question.lower() or '%' in question:
+            steps.append("Detected discount/percentage problem")
+            if len(numbers) >= 2:
+                price = numbers[-1]  # Usually the last number is the price
+                percentage = numbers[0]  # First number is often the percentage
+                discount_amount = price * (percentage / 100)
+                result = price - discount_amount
+                steps.append(f"Original price: {price}")
+                steps.append(f"Discount: {percentage}%")
+                steps.append(f"Discount amount: {discount_amount}")
+                steps.append(f"Final price: {result}")
+                return {'answer': result, 'steps': steps}
+        
+        # Depreciation problems
+        if 'depreciate' in question.lower() or 'value after' in question.lower():
+            steps.append("Detected depreciation problem")
+            if len(numbers) >= 3:
+                initial_value = numbers[0]
+                rate = numbers[1] / 100  # Convert percentage to decimal
+                years = numbers[2]
+                result = initial_value * ((1 - rate) ** years)
+                steps.append(f"Initial value: {initial_value}")
+                steps.append(f"Depreciation rate: {numbers[1]}% per year")
+                steps.append(f"Years: {years}")
+                steps.append(f"Value = {initial_value} × (1 - {rate})^{years} = {result}")
+                return {'answer': result, 'steps': steps}
+        
         if ('upstream' in question.lower() or 'downstream' in question.lower() or 
             'current' in question.lower() or 'boat' in question.lower()):
             steps.append("Detected rate/boat problem with current")
@@ -350,6 +463,21 @@ class MathSolver:
                         result = f"v={v:.2f}, c={c:.2f}"
                         return {'answer': result, 'steps': steps}
         
+        # Simple arithmetic operations on word problems
+        if any(word in question.lower() for word in ['has', 'buys', 'gives', 'left']):
+            steps.append("Detected simple arithmetic word problem")
+            # Pattern: has X, buys Y, gives Z -> X + Y - Z
+            if 'has' in question.lower() and 'buys' in question.lower() and 'gives' in question.lower():
+                if len(numbers) >= 3:
+                    initial = numbers[0]
+                    bought = numbers[1]
+                    given = numbers[2]
+                    result = initial + bought - given
+                    steps.append(f"Initial: {initial}, Bought: {bought}, Given away: {given}")
+                    steps.append(f"Result = {initial} + {bought} - {given} = {result}")
+                    return {'answer': result, 'steps': steps}
+        
+        # Fallback to simple operations
         if any(word in question.lower() for word in ['total', 'sum', 'altogether']):
             result = sum(numbers)
             steps.append(f"Calculated total: {result}")
