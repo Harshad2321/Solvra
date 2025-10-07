@@ -9,8 +9,8 @@ import json
 
 st.set_page_config(page_title="Solvra", page_icon="", layout="wide")
 
-st.title(" Solvra")
-st.subheader("Agentic Mathematical Reasoning System")
+st.title("🧮 Solvra - Math Problem Solver")
+st.subheader("AI-powered mathematical reasoning system")
 
 @st.cache_resource
 def load_pipeline():
@@ -57,14 +57,14 @@ if st.button("Solve", type="primary"):
 
 st.markdown("---")
 st.markdown("""
-### Supported Problem Types
-- **Arithmetic**: Basic calculations (addition, subtraction, multiplication, division)
-- **Algebra**: Solving equations with variables
-- **Geometry**: Area, perimeter, volume calculations
-- **Logic**: Boolean logic and reasoning
-- **Word Problems**: Real-world scenario problems
-- **Comparison**: Finding maximum, minimum, or comparing values
-- **Pattern Recognition**: Identifying and predicting sequences
+### What can Solvra solve?
+- **Arithmetic** - Basic math operations
+- **Algebra** - Equations with variables
+- **Geometry** - Areas, volumes, etc.
+- **Logic** - Reasoning problems
+- **Word Problems** - Real-world scenarios
+- **Comparisons** - Max, min, greater/less
+- **Patterns** - Number sequences
 """)
 
-st.caption("Ethos 2025 Hackathon | Machine Learning Challenge")
+st.caption("Made for Ethos 2025 Hackathon at IIT Guwahati")
