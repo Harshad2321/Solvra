@@ -1,6 +1,0 @@
-{
-  "model_path": "models/question_type.pkl",
-  "train_data": "data/train.csv",
-  "test_data": "data/test.csv",
-  "output_path": "data/output.csv"
-}
