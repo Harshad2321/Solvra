@@ -1,7 +1,7 @@
 {
   "train_accuracy": 96.0,
   "train_f1_macro": 95.70662768031187,
-  "train_avg_time": 0.0001632833480834961,
-  "test_avg_time": 0.00011718024810155232,
-  "test_total_time": 0.011249303817749023
+  "train_avg_time": 0.0002466821670532227,
+  "test_avg_time": 0.00018225361903508505,
+  "test_total_time": 0.017496347427368164
 }

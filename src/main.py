@@ -201,16 +201,35 @@ class SolvraPipeline:
     
     def save_predictions(self, filename: str = "predictions.csv"):
         """
-        Save predictions in the required format
+        Save predictions in the required format with all columns
         """
         output_path = self.data_dir / filename
         
-        # Create submission DataFrame
+        # Create submission DataFrame with all required columns
+        # Get solution column if it exists, otherwise create empty strings
+        if 'solution' in self.test_df.columns:
+            solutions = self.test_df['solution'].values
+        else:
+            # Create solution explanations from reasoning traces if available
+            solutions = [''] * len(self.test_df)
+        
         submission_df = pd.DataFrame({
+            'topic': self.test_df['topic'].values,
+            'problem_statement': self.test_df['problem_statement'].values,
+            'solution': solutions,
             'correct option': self.predictions
         })
         
-        submission_df.to_csv(output_path, index=False)
+        # Try to save, handle permission errors by using temp file
+        try:
+            submission_df.to_csv(output_path, index=False)
+        except PermissionError:
+            # File might be open, try alternate name
+            temp_path = self.data_dir / "predictions_new.csv"
+            submission_df.to_csv(temp_path, index=False)
+            output_path = temp_path
+            print(f"⚠️  Original file locked, saved as predictions_new.csv instead")
+        
         print(f"\n💾 Predictions saved to: {output_path}")
         
         # Show sample predictions

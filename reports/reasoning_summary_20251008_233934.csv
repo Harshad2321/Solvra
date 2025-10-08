@@ -1,0 +1,51 @@
+problem_idx,topic,predicted_option,correct_option,is_correct,num_reasoning_steps,has_warnings
+0,Optimization of actions and planning,4,4,True,10,False
+1,Spatial reasoning,4,4,True,9,False
+2,Spatial reasoning,5,5,True,9,False
+3,Optimization of actions and planning,2,2,True,10,False
+4,Operation of mechanisms,5,5,True,9,False
+5,Spatial reasoning,3,3,True,9,False
+6,Operation of mechanisms,3,3,True,9,False
+7,Spatial reasoning,5,5,True,9,False
+8,Classic riddles,4,3,False,9,False
+9,Optimization of actions and planning,2,2,True,10,False
+10,Spatial reasoning,3,3,True,9,False
+11,Sequence solving,3,3,True,10,False
+12,Optimization of actions and planning,1,4,False,10,False
+13,Optimization of actions and planning,1,1,True,10,False
+14,Lateral thinking,4,4,True,9,False
+15,Spatial reasoning,2,2,True,9,False
+16,Optimization of actions and planning,2,2,True,10,False
+17,Lateral thinking,5,5,True,9,False
+18,Spatial reasoning,4,4,True,9,False
+19,Sequence solving,3,3,True,12,False
+20,Logical traps,2,2,True,9,False
+21,Sequence solving,2,2,True,10,False
+22,Spatial reasoning,3,3,True,9,False
+23,Sequence solving,5,5,True,12,False
+24,Lateral thinking,1,1,True,9,False
+25,Optimization of actions and planning,5,5,True,10,False
+26,Classic riddles,3,3,True,9,False
+27,Classic riddles,5,5,True,9,False
+28,Optimization of actions and planning,3,3,True,10,False
+29,Lateral thinking,3,3,True,9,False
+30,Classic riddles,4,4,True,9,False
+31,Optimization of actions and planning,1,1,True,10,False
+32,Spatial reasoning,4,4,True,9,False
+33,Sequence solving,3,3,True,13,True
+34,Operation of mechanisms,3,3,True,9,False
+35,Spatial reasoning,4,4,True,9,False
+36,Operation of mechanisms,3,3,True,9,False
+37,Logical traps,1,1,True,9,False
+38,Operation of mechanisms,1,1,True,9,False
+39,Operation of mechanisms,1,1,True,9,False
+40,Spatial reasoning,2,2,True,9,False
+41,Operation of mechanisms,2,2,True,9,False
+42,Operation of mechanisms,1,1,True,9,False
+43,Logical traps,5,5,True,9,False
+44,Sequence solving,1,1,True,12,False
+45,Classic riddles,3,3,True,9,False
+46,Spatial reasoning,2,2,True,9,False
+47,Spatial reasoning,2,2,True,9,False
+48,Classic riddles,2,2,True,9,False
+49,Operation of mechanisms,1,1,True,9,False

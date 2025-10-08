@@ -11,16 +11,16 @@ SOLVRA - AGENTIC REASONING SYSTEM - PERFORMANCE REPORT
 🔮 TEST SET METRICS
 ----------------------------------------------------------------------
   Test Problems:      96
-  Avg Inference Time: 0.0001s per problem
-  Total Test Time:    0.01s
-  Throughput:         8533.86 problems/sec
+  Avg Inference Time: 0.0002s per problem
+  Total Test Time:    0.02s
+  Throughput:         5486.86 problems/sec
 
 ⏱️  INFERENCE TIME ANALYSIS
 ----------------------------------------------------------------------
   Min Time:           0.0000s
-  Max Time:           0.0011s
+  Max Time:           0.0015s
   Median Time:        0.0000s
-  Std Dev:            0.0003s
+  Std Dev:            0.0004s
 
 ⚙️  SYSTEM CONFIGURATION
 ----------------------------------------------------------------------
