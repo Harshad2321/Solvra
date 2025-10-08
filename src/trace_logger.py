@@ -82,6 +82,10 @@ class TraceLogger:
     
     def generate_html_report(self, filename: str = None):
         """Generate an HTML report with detailed reasoning traces"""
+        # Temporarily disabled due to formatting issue
+        print("⚠️  HTML report generation temporarily disabled")
+        return
+        
         if filename is None:
             filename = f"reasoning_report_{self.session_id}.html"
         

@@ -1,82 +1,19 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
 
-# Virtual environments
+# Virtual environment
 venv/
 env/
-ENV/
-.venv
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Data files
+predictions.csv
 
-# Data files (keep structure, ignore large files)
-*.csv
-!data/.gitkeep
-data/train_preprocessed.csv
-data/test_preprocessed.csv
-
-# Model files
-models/*.pkl
-models/*.pt
-models/*.h5
-!models/.gitkeep
-
-# Reports (keep structure, ignore generated reports)
-reports/*.json
-reports/*.csv
-reports/*.html
-!reports/.gitkeep
-!reports/technical_report.md
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Logs
-*.log
-logs/
-
-# OS
+# OS files
 .DS_Store
 Thumbs.db
-
-# Temporary files
-*.tmp
-temp/
-tmp/
-
-# Environment variables
-.env
-.env.local
-
-# Streamlit
-.streamlit/secrets.toml

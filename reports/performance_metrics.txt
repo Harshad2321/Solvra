@@ -1,0 +1,34 @@
+======================================================================
+SOLVRA - AGENTIC REASONING SYSTEM - PERFORMANCE REPORT
+======================================================================
+
+🎓 TRAINING METRICS
+----------------------------------------------------------------------
+  Accuracy:           96.00%
+  Macro F1 Score:     95.71%
+  Avg Inference Time: 0.0002s per problem
+
+🔮 TEST SET METRICS
+----------------------------------------------------------------------
+  Test Problems:      96
+  Avg Inference Time: 0.0001s per problem
+  Total Test Time:    0.01s
+  Throughput:         8533.86 problems/sec
+
+⏱️  INFERENCE TIME ANALYSIS
+----------------------------------------------------------------------
+  Min Time:           0.0000s
+  Max Time:           0.0011s
+  Median Time:        0.0000s
+  Std Dev:            0.0003s
+
+⚙️  SYSTEM CONFIGURATION
+----------------------------------------------------------------------
+  Training Samples:   384
+  Test Samples:       96
+  Solvers:            Math, Logic, Spatial, Sequence
+  Verification:       Enabled
+  ML Enhancement:     Enabled
+  Ensemble:           Enabled
+
+======================================================================
