@@ -217,7 +217,7 @@ class ReasoningAgent:
         Enhanced answer evaluation with multi-strategy approach
         Returns option number (1-5)
         """
-        self.add_to_trace("📊 Evaluating answer options with enhanced logic")
+        self.add_to_trace(" Evaluating answer options with enhanced logic")
         
         topic = problem['topic'].lower()
         problem_text = problem['problem_statement'].lower()
@@ -346,14 +346,14 @@ class ReasoningAgent:
         Returns: (predicted_option, reasoning_trace)
         """
         self.reset_trace()
-        self.add_to_trace("🚀 Starting reasoning process")
+        self.add_to_trace(" Starting reasoning process")
         
         # Step 1: Decompose
         subproblems = self.decompose_problem(problem)
         
         # Step 2: Select primary tool
         tool = self.select_tool(problem)
-        self.add_to_trace(f"🔧 Selected tool: {tool}")
+        self.add_to_trace(f" Selected tool: {tool}")
         
         # Step 3: Solve subproblems
         results = []
@@ -367,7 +367,7 @@ class ReasoningAgent:
         
         # Step 5: Evaluate options
         predicted_option = self.evaluate_answer_options(problem, final_result)
-        self.add_to_trace(f"✅ Final answer: Option {predicted_option}")
+        self.add_to_trace(f" Final answer: Option {predicted_option}")
         
         return predicted_option, self.reasoning_trace
     

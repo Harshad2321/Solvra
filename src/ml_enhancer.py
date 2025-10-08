@@ -60,7 +60,7 @@ class MLEnhancer:
         """
         Learn patterns from training data
         """
-        print("🎓 Training ML Enhancer on training data...")
+        print(" Training ML Enhancer on training data...")
         
         for idx, row in training_data.iterrows():
             if pd.isna(row.get('correct_option_number')):
@@ -90,7 +90,7 @@ class MLEnhancer:
                 self.topic_best_guesses[topic] = counter.most_common(1)[0][0]
         
         self.trained = True
-        print(f"✅ Trained on {len(training_data)} examples")
+        print(f" Trained on {len(training_data)} examples")
         print(f"   Learned patterns for {len(self.topic_patterns)} topics")
     
     def predict(self, problem: Dict[str, Any], base_prediction: int = None) -> Tuple[int, float]:
@@ -229,7 +229,7 @@ def demo_ml_enhancer():
     # Test prediction
     test_problem = train_df.iloc[0].to_dict()
     prediction, confidence = ml_enhancer.predict(test_problem)
-    print(f"\n🎯 Test Prediction:")
+    print(f"\n Test Prediction:")
     print(f"   Predicted: Option {prediction} (confidence: {confidence:.2%})")
     print(f"   Actual: Option {test_problem.get('correct_option_number', 'N/A')}")
 

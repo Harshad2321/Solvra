@@ -122,11 +122,11 @@ class SolvraPipeline:
         f1_macro = f1_score(y_true, y_pred, average='macro') * 100
         avg_inference_time = np.mean(train_times)
         
-        print(f"\n✅ Training complete")
-        print(f"📊 Training Accuracy: {accuracy:.2f}% ({correct_count}/{num_examples})")
-        print(f"📊 Macro F1 Score: {f1_macro:.2f}%")
-        print(f"⏱️  Average Inference Time: {avg_inference_time:.4f}s per problem")
-        print(f"⏱️  Total Training Time: {sum(train_times):.2f}s")
+        print(f"\n Training complete")
+        print(f"Training Accuracy: {accuracy:.2f}% ({correct_count}/{num_examples})")
+        print(f" Macro F1 Score: {f1_macro:.2f}%")
+        print(f"⏱  Average Inference Time: {avg_inference_time:.4f}s per problem")
+        print(f"⏱  Total Training Time: {sum(train_times):.2f}s")
         
         # Store metrics
         self.performance_metrics['train_accuracy'] = accuracy
@@ -142,11 +142,11 @@ class SolvraPipeline:
         """
         Generate predictions for the entire test set using ensemble approach
         """
-        print(f"\n🔮 Generating predictions for {len(self.test_df)} test problems...")
+        print(f"\n Generating predictions for {len(self.test_df)} test problems...")
         print("-"*60)
         
         if not self.ml_enhancer.trained:
-            print("⚠️  Warning: ML enhancer not trained. Training now...")
+            print("  Warning: ML enhancer not trained. Training now...")
             self.ml_enhancer.train(self.train_df)
             self.ensemble = EnsemblePredictor(self.ml_enhancer)
         
@@ -190,9 +190,9 @@ class SolvraPipeline:
         avg_test_time = np.mean(self.inference_times)
         total_test_time = sum(self.inference_times)
         
-        print(f"✅ Predictions complete")
-        print(f"⏱️  Average Inference Time: {avg_test_time:.4f}s per problem")
-        print(f"⏱️  Total Test Time: {total_test_time:.2f}s")
+        print(f" Predictions complete")
+        print(f"  Average Inference Time: {avg_test_time:.4f}s per problem")
+        print(f"  Total Test Time: {total_test_time:.2f}s")
         
         # Store metrics
         self.performance_metrics['test_avg_time'] = avg_test_time
@@ -228,19 +228,19 @@ class SolvraPipeline:
             temp_path = self.data_dir / "predictions_new.csv"
             submission_df.to_csv(temp_path, index=False)
             output_path = temp_path
-            print(f"⚠️  Original file locked, saved as predictions_new.csv instead")
+            print(f"  Original file locked, saved as predictions_new.csv instead")
         
-        print(f"\n💾 Predictions saved to: {output_path}")
+        print(f"\n Predictions saved to: {output_path}")
         
         # Show sample predictions
-        print("\n📋 Sample predictions:")
+        print("\n Sample predictions:")
         print(submission_df.head(10))
     
     def generate_reports(self):
         """
         Generate all analysis reports
         """
-        print("\n📊 Generating reports...")
+        print("\n Generating reports...")
         
         # Save traces
         self.logger.save_traces_json()
@@ -256,7 +256,7 @@ class SolvraPipeline:
     def generate_performance_report(self):
         """Generate comprehensive performance metrics report"""
         print("\n" + "="*70)
-        print("📊 PERFORMANCE METRICS REPORT")
+        print(" PERFORMANCE METRICS REPORT")
         print("="*70)
         
         report_lines = []
@@ -267,7 +267,7 @@ class SolvraPipeline:
         
         # Training Metrics
         if 'train_accuracy' in self.performance_metrics:
-            report_lines.append("🎓 TRAINING METRICS")
+            report_lines.append(" TRAINING METRICS")
             report_lines.append("-"*70)
             report_lines.append(f"  Accuracy:           {self.performance_metrics['train_accuracy']:.2f}%")
             report_lines.append(f"  Macro F1 Score:     {self.performance_metrics['train_f1_macro']:.2f}%")
@@ -276,7 +276,7 @@ class SolvraPipeline:
         
         # Test Metrics
         if 'test_avg_time' in self.performance_metrics:
-            report_lines.append("🔮 TEST SET METRICS")
+            report_lines.append(" TEST SET METRICS")
             report_lines.append("-"*70)
             report_lines.append(f"  Test Problems:      {len(self.test_df)}")
             report_lines.append(f"  Avg Inference Time: {self.performance_metrics['test_avg_time']:.4f}s per problem")
@@ -286,7 +286,7 @@ class SolvraPipeline:
         
         # Inference Time Distribution
         if self.inference_times:
-            report_lines.append("⏱️  INFERENCE TIME ANALYSIS")
+            report_lines.append("  INFERENCE TIME ANALYSIS")
             report_lines.append("-"*70)
             report_lines.append(f"  Min Time:           {np.min(self.inference_times):.4f}s")
             report_lines.append(f"  Max Time:           {np.max(self.inference_times):.4f}s")
@@ -295,7 +295,7 @@ class SolvraPipeline:
             report_lines.append("")
         
         # System Configuration
-        report_lines.append("⚙️  SYSTEM CONFIGURATION")
+        report_lines.append("  SYSTEM CONFIGURATION")
         report_lines.append("-"*70)
         report_lines.append(f"  Training Samples:   {len(self.train_df)}")
         report_lines.append(f"  Test Samples:       {len(self.test_df)}")
@@ -316,7 +316,7 @@ class SolvraPipeline:
         with open(report_path, 'w', encoding='utf-8') as f:
             f.write(report_text)
         
-        print(f"\n💾 Performance report saved to: {report_path}")
+        print(f"\n Performance report saved to: {report_path}")
         
         # Save metrics as JSON
         import json
@@ -324,11 +324,11 @@ class SolvraPipeline:
         with open(metrics_path, 'w') as f:
             json.dump(self.performance_metrics, f, indent=2)
         
-        print(f"💾 Metrics JSON saved to: {metrics_path}")
+        print(f" Metrics JSON saved to: {metrics_path}")
     
     def _generate_evaluation_report(self):
         """Generate detailed evaluation report"""
-        print("\n📈 Generating evaluation report...")
+        print("\n Generating evaluation report...")
         
         # This would contain detailed metrics
         # For now, the logger already handles most of this
@@ -357,14 +357,14 @@ class SolvraPipeline:
         self.generate_performance_report()
         
         print("\n" + "="*60)
-        print("🎉 SOLVRA PIPELINE COMPLETED SUCCESSFULLY")
+        print(" SOLVRA PIPELINE COMPLETED SUCCESSFULLY")
         print("="*60)
-        print(f"\n✅ Training Accuracy: {train_accuracy:.2f}%")
+        print(f"\n Training Accuracy: {train_accuracy:.2f}%")
         if 'train_f1_macro' in self.performance_metrics:
-            print(f"✅ Training F1 Score: {self.performance_metrics['train_f1_macro']:.2f}%")
-        print(f"📁 Reports saved in: {self.reports_dir}")
-        print(f"📁 Predictions saved in: {self.data_dir}")
-        print("\n🏆 Ready for Ethos 2025 submission!")
+            print(f" Training F1 Score: {self.performance_metrics['train_f1_macro']:.2f}%")
+        print(f" Reports saved in: {self.reports_dir}")
+        print(f" Predictions saved in: {self.data_dir}")
+        print("\n Ready for Ethos 2025 submission!")
 
 
 def main():

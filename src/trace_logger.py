@@ -78,12 +78,12 @@ class TraceLogger:
         df = pd.DataFrame(summary_data)
         df.to_csv(filepath, index=False)
         
-        print(f"💾 Saved reasoning summary to {filepath}")
+        print(f"Saved reasoning summary to {filepath}")
     
     def generate_html_report(self, filename: str = None):
         """Generate an HTML report with detailed reasoning traces"""
         # Temporarily disabled due to formatting issue
-        print("⚠️  HTML report generation temporarily disabled")
+        print("  HTML report generation temporarily disabled")
         return
         
         if filename is None:
@@ -96,7 +96,7 @@ class TraceLogger:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(html_content)
         
-        print(f"📄 Generated HTML report: {filepath}")
+        print(f" Generated HTML report: {filepath}")
     
     def _build_html_report(self) -> str:
         """Build HTML content for the report"""
@@ -125,13 +125,13 @@ class TraceLogger:
 </head>
 <body>
     <div class="container">
-        <h1>🤖 Solvra Reasoning Report</h1>
+        <h1> Solvra Reasoning Report</h1>
         <p><strong>Session:</strong> {session_id}</p>
         <p><strong>Generated:</strong> {timestamp}</p>
         
         {stats_section}
         
-        <h2>📋 Detailed Reasoning Traces</h2>
+        <h2> Detailed Reasoning Traces</h2>
         {traces_section}
     </div>
 </body>
@@ -184,7 +184,7 @@ class TraceLogger:
                 <h4>Reasoning Steps:</h4>
                 {steps_html}
                 
-                {f'<p class="warning">⚠️ {trace["verification_report"]}</p>' if trace.get('verification_report') else ''}
+                {f'<p class="warning"> {trace["verification_report"]}</p>' if trace.get('verification_report') else ''}
             </div>
             """
         
@@ -218,12 +218,12 @@ class TraceLogger:
                 topic_stats[topic]['correct'] += 1
         
         print("\n" + "="*60)
-        print("📊 SOLVRA REASONING SUMMARY")
+        print(" SOLVRA REASONING SUMMARY")
         print("="*60)
         print(f"Total Problems: {total}")
         print(f"Correct: {correct}")
         print(f"Accuracy: {accuracy:.2f}%")
-        print("\n📂 Topic-wise Performance:")
+        print("\n Topic-wise Performance:")
         print("-"*60)
         
         for topic, stats in sorted(topic_stats.items()):
@@ -251,7 +251,7 @@ def demo_logger():
             {'step': 'Predict next', 'result': 10}
         ]
         
-        logger.log_problem_trace(i, problem, 2, trace, "✅ All checks passed")
+        logger.log_problem_trace(i, problem, 2, trace, " All checks passed")
     
     logger.print_summary()
     logger.save_traces_json()

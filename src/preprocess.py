@@ -24,15 +24,15 @@ class DataPreprocessor:
         
     def load_data(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """Load training and test datasets"""
-        print("📂 Loading datasets...")
+        print(" Loading datasets...")
         self.train_df = pd.read_csv(self.data_dir / "train.csv")
         self.test_df = pd.read_csv(self.data_dir / "test.csv")
         
-        print(f"✅ Loaded {len(self.train_df)} training examples")
-        print(f"✅ Loaded {len(self.test_df)} test examples")
+        print(f" Loaded {len(self.train_df)} training examples")
+        print(f" Loaded {len(self.test_df)} test examples")
         
         # Basic statistics
-        print(f"\n📊 Training topics distribution:")
+        print(f"\n Training topics distribution:")
         print(self.train_df['topic'].value_counts())
         
         return self.train_df, self.test_df
@@ -145,12 +145,12 @@ class DataPreprocessor:
         # Combine with original data
         self.train_df = pd.concat([self.train_df, problem_types_df], axis=1)
         
-        print("✅ Training data preprocessed")
+        print(" Training data preprocessed")
         return self.train_df
     
     def preprocess_test_data(self) -> pd.DataFrame:
         """Full preprocessing pipeline for test data"""
-        print("\n🔧 Preprocessing test data...")
+        print("\n Preprocessing test data...")
         
         # Clean text columns
         self.test_df['problem_statement'] = self.test_df['problem_statement'].apply(self.clean_text)
@@ -168,7 +168,7 @@ class DataPreprocessor:
         # Combine with original data
         self.test_df = pd.concat([self.test_df, problem_types_df], axis=1)
         
-        print("✅ Test data preprocessed")
+        print(" Test data preprocessed")
         return self.test_df
     
     def create_problem_summary(self, row: pd.Series) -> str:
@@ -185,11 +185,11 @@ class DataPreprocessor:
         """Save preprocessed data"""
         if self.train_df is not None:
             self.train_df.to_csv(self.data_dir / "train_preprocessed.csv", index=False)
-            print(f"💾 Saved preprocessed training data")
+            print(f" Saved preprocessed training data")
         
         if self.test_df is not None:
             self.test_df.to_csv(self.data_dir / "test_preprocessed.csv", index=False)
-            print(f"💾 Saved preprocessed test data")
+            print(f" Saved preprocessed test data")
 
 
 def main():
@@ -207,7 +207,7 @@ def main():
     preprocessor.save_preprocessed_data()
     
     # Show sample
-    print("\n📋 Sample preprocessed entry:")
+    print("\n Sample preprocessed entry:")
     print(preprocessor.create_problem_summary(train_df.iloc[0]))
     print(f"\nProblem flags: {train_df.iloc[0][['requires_math', 'requires_spatial', 'requires_optimization']].to_dict()}")
 
